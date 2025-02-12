@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\GreetController;
 
+use App\Http\Middleware\CheckParam;
+
 // default laravel route
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +29,19 @@ Route::get('posts', function(){
     $res = Post::with('comments')->get();
     // $res = Post::all();
     dd($res->toArray());
+});
+
+// middleware test
+Route::prefix('test')
+    ->middleware(CheckParam::class)
+    ->group(function () {
+    Route::get('/', function () {
+        return "This is the /test route.";
+    });
+
+    Route::get('{value}', function ($value) {
+        return "Accepted: " . $value;
+    });
 });
 
 // uses resource routes
