@@ -25,6 +25,7 @@ Route::get(
 // gets all posts with their respective comments
 Route::get('posts', function(){
     $res = Post::with('comments')->get();
+    // $res = Post::all();
     dd($res->toArray());
 });
 
