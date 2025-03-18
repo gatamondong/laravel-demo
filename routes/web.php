@@ -5,8 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\GreetController;
+use App\Http\Controllers\BladeController;
 
 use App\Http\Middleware\CheckParam;
+
+
+Route::get('/blade-if', [BladeController::class, 'showIfDirective']);
+Route::get('/blade-foreach', [BladeController::class, 'showForEachDirective']);
+Route::get('/blade-while', [BladeController::class, 'showWhileDirective']);
+Route::get('/blade-section', [BladeController::class, 'showIncludeSectionYield']);
+
 
 // default laravel route
 Route::get('/', function () {
